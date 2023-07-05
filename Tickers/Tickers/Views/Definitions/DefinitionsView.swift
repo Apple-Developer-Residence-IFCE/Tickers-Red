@@ -8,13 +8,21 @@
 import SwiftUI
 
 struct DefinitionsView: View {
-    @State var tempoPomodoro: Float = 0
-    @State var descansoCurto: Float = 0
-    @State var descansoLongo: Float = 0
+    @Binding var isPresentingDefinitions: Bool
+    @State var focusTime: Float = 0
+    @State var rest: Float = 0
     @Environment(\.dismiss) var dismiss
+    
+    var body: some View{
+        if #available(iOS 16.0, *) {
+            bottomSheetContent
+                .presentationDetents([.height(300)])
+        } else {
+            bottomSheetContent
+        }
+    }
 
-    var body: some View {
-        NavigationView{
+    var bottomSheetContent: some View {
             VStack(alignment: .leading, spacing: 16){
                 HStack{
                     Image("hourglassWPencil")
@@ -28,17 +36,23 @@ struct DefinitionsView: View {
                         }.padding(.trailing, 30)
                 }.padding(.leading, 30)
                 Divider()
-                SliderComponent(valorAtual: $tempoPomodoro, title: "Tempo por pomodoro", minValue: 15, maxValue: 50, valueType: "min")
-                SliderComponent(valorAtual: $descansoCurto, title: "Descanso Curto", minValue: 4, maxValue: 10, valueType: "min")
-                SliderComponent(valorAtual: $descansoLongo, title: "Descanso Longo", minValue: 15, maxValue: 30, valueType: "min")
-                Spacer()
+                SliderComponent(valorAtual: $focusTime, title: "Tempo de foco", minValue: 15, maxValue: 50, valueType: "min")
+                SliderComponent(valorAtual: $rest, title: "Descanso", minValue: 4, maxValue: 10, valueType: "min")
             }
-        }.navigationBarBackButtonHidden(true)
+            .interactiveDismissDisabled()
     }
 }
 
+fileprivate struct DefinitionsBinding: View {
+    @State var isPresentingDefinitions: Bool = true
+    var body: some View {
+        DefinitionsView(isPresentingDefinitions: $isPresentingDefinitions)
+    }
+}
+
+
 struct DefinitionsView_Previews: PreviewProvider {
     static var previews: some View {
-        DefinitionsView()
+        DefinitionsBinding()
     }
 }

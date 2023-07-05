@@ -274,6 +274,7 @@
 		7DB700AD2A54A9A3005EB90F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				C8EE385C2A561FFE000D10F2 /* Achievements */,
 				7DB700BB2A54B3C0005EB90F /* Sounds */,
 				7DB700BA2A54B3A8005EB90F /* Home */,
 				7DB700B92A54B30D005EB90F /* Missions */,
@@ -395,7 +396,6 @@
 			isa = PBXGroup;
 			children = (
 				7DB700C62A54EA71005EB90F /* AchievementsScreenView.swift */,
-				7DB700C72A54EA71005EB90F /* AchievementViewModel.swift */,
 			);
 			path = AchievementsView;
 			sourceTree = "<group>";
@@ -415,6 +415,14 @@
 				C82D8B3F2A4E044C00C2FE27 /* AchievementCardView.swift */,
 			);
 			path = AchievementCard;
+			sourceTree = "<group>";
+		};
+		C8EE385C2A561FFE000D10F2 /* Achievements */ = {
+			isa = PBXGroup;
+			children = (
+				7DB700C72A54EA71005EB90F /* AchievementViewModel.swift */,
+			);
+			path = Achievements;
 			sourceTree = "<group>";
 		};
 		CE6A1A742A3140F100D52FF4 /* Sounds */ = {
